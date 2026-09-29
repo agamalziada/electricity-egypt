@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Petroleum Subsidies in Egypt's Budget: A Sharp Drop in One Year</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root{--blue:#378ADD;--coral:#D85A30;--teal:#1D9E75;--amber:#BA7517;--gray:#888780;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fff;color:#2c2c2a;}
+  #root{padding:clamp(12px,3vw,20px);}
+  .hdr{border-left:3px solid #D85A30;padding-left:10px;margin-bottom:10px;}
+  .tag{font-size:clamp(9px,2vw,10px);font-weight:700;letter-spacing:.07em;color:var(--gray);margin-bottom:2px;text-transform:uppercase;}
+  .title{font-size:clamp(13px,3.5vw,15px);font-weight:600;line-height:1.35;margin-bottom:2px;}
+  .subtitle{font-size:clamp(11px,2.5vw,12px);color:#5f5e5a;}
+  .callout{background:#f1efe8;border-left:3px solid #D85A30;padding:8px 11px;font-size:clamp(11px,2.5vw,12px);color:#5f5e5a;line-height:1.55;margin:9px 0;font-style:italic;}
+  .source{font-size:clamp(9px,2vw,10px);color:var(--gray);margin-top:10px;line-height:1.4;}
+  .cards{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+  .card{flex:1;min-width:min(100px,44%);border-radius:8px;padding:clamp(9px,2.5vw,12px) clamp(10px,3vw,13px);}
+  @media(prefers-color-scheme:dark){
+    body{background:#1a1a18;color:#d3d1c7;}
+    .callout{background:#2c2c2a;color:#b4b2a9;}
+    .subtitle,.source{color:#b4b2a9;}
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="hdr">
+    <p class="tag">Zawia3 &middot; Chart 3 of 7</p>
+    <p class="title">Petroleum Subsidies in Egypt's Budget: A Sharp Drop in One Year</p>
+    <p class="subtitle">EGP billion — a 78.9% cut and citizens bear the difference</p>
+  </div>
+  <div class="callout">"Fuel subsidies fell by more than three-quarters in a single year — citizens absorb the gap through successive price hikes"</div>
+  
+<div class="cards" style="margin-bottom:14px">
+  <div class="card" style="background:#f1efe8;text-align:center">
+    <p style="font-size:clamp(9px,2.2vw,10px);color:#5f5e5a;margin-bottom:3px">2025/2026</p>
+    <p style="font-size:clamp(18px,5vw,22px);font-weight:800;color:#888780" id="v1">0</p>
+    <p style="font-size:clamp(9px,2vw,10px);color:#888780;margin-top:1px">EGP billion</p>
+  </div>
+  <div class="card" style="background:#edf7f3;text-align:center">
+    <p style="font-size:clamp(9px,2.2vw,10px);color:#0F6E56;margin-bottom:3px">2026/2027</p>
+    <p style="font-size:clamp(18px,5vw,22px);font-weight:800;color:#1D9E75" id="v2">0</p>
+    <p style="font-size:clamp(9px,2vw,10px);color:#0F6E56;margin-top:1px">EGP billion</p>
+  </div>
+  <div class="card" style="background:#edf7f3;text-align:center">
+    <p style="font-size:clamp(9px,2.2vw,10px);color:#0F6E56;margin-bottom:3px">Reduction</p>
+    <p style="font-size:clamp(18px,5vw,22px);font-weight:800;color:#1D9E75">−78.9%</p>
+    <p style="font-size:clamp(9px,2vw,10px);color:#888780;margin-top:1px">in one year</p>
+  </div>
+</div>
+<div style="position:relative;width:100%;height:clamp(155px,40vw,180px)"><canvas id="c"></canvas></div>
+<script>
+(function(){
+  var dk=matchMedia("(prefers-color-scheme:dark)").matches;
+  var tc=dk?"#b4b2a9":"#5f5e5a",gc=dk?"rgba(255,255,255,.08)":"rgba(0,0,0,.07)";
+  var gray=dk?"#B4B2A9":"#888780",teal=dk?"#5DCAA5":"#1D9E75";
+  new Chart(document.getElementById("c"),{type:"bar",
+    data:{labels:["2025/2026","2026/2027"],datasets:[{data:[75.033,15.840],backgroundColor:[gray,teal],borderWidth:0,borderRadius:6}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:900,easing:"easeOutQuart",delay:function(c){return c.dataIndex*200;}},
+    plugins:{legend:{display:false},tooltip:{backgroundColor:dk?"#2c2c2a":"#fff",borderColor:dk?"rgba(255,255,255,.1)":"rgba(0,0,0,.08)",borderWidth:1,titleColor:dk?"#d3d1c7":"#2c2c2a",bodyColor:tc,padding:10,callbacks:{label:function(c){return "EGP "+c.raw+"B";}}}},
+    scales:{x:{ticks:{color:tc,font:{size:11}},grid:{display:false},border:{color:gc}},
+    y:{ticks:{color:tc,font:{size:10},callback:function(v){return v+"B";}},grid:{color:gc},border:{display:false}}}}
+  });
+  var s=null;
+  function cu(ts){if(!s)s=ts;var p=Math.min((ts-s)/900,1),e=1-Math.pow(1-p,3);
+    document.getElementById("v1").textContent=(e*75.033).toFixed(1);
+    document.getElementById("v2").textContent=(e*15.840).toFixed(1);
+    if(p<1)requestAnimationFrame(cu);else{document.getElementById("v1").textContent="75.0";document.getElementById("v2").textContent="15.8";}
+  }
+  setTimeout(function(){requestAnimationFrame(cu);},100);
+})();
+</script>
+  <p class="source">Source: Egyptian state budget 2026/2027 / Al-Borsa News</p>
+</div>
+<script>
+(function(){
+  function notify(){var h=document.getElementById("root").offsetHeight;window.parent.postMessage({type:"chartResize",height:h},"*");}
+  setTimeout(notify,1400);window.addEventListener("resize",notify);
+  try{new ResizeObserver(function(){setTimeout(notify,80);}).observe(document.body);}catch(e){}
+})();
+</script>
+</body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Domestic Production vs. Imports in Egypt's Petroleum Products</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root{--blue:#378ADD;--coral:#D85A30;--teal:#1D9E75;--amber:#BA7517;--gray:#888780;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fff;color:#2c2c2a;}
+  #root{padding:clamp(12px,3vw,20px);}
+  .hdr{border-left:3px solid #378ADD;padding-left:10px;margin-bottom:10px;}
+  .tag{font-size:clamp(9px,2vw,10px);font-weight:700;letter-spacing:.07em;color:var(--gray);margin-bottom:2px;text-transform:uppercase;}
+  .title{font-size:clamp(13px,3.5vw,15px);font-weight:600;line-height:1.35;margin-bottom:2px;}
+  .subtitle{font-size:clamp(11px,2.5vw,12px);color:#5f5e5a;}
+  .callout{background:#f1efe8;border-left:3px solid #378ADD;padding:8px 11px;font-size:clamp(11px,2.5vw,12px);color:#5f5e5a;line-height:1.55;margin:9px 0;font-style:italic;}
+  .source{font-size:clamp(9px,2vw,10px);color:var(--gray);margin-top:10px;line-height:1.4;}
+  .cards{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+  .card{flex:1;min-width:min(100px,44%);border-radius:8px;padding:clamp(9px,2.5vw,12px) clamp(10px,3vw,13px);}
+  @media(prefers-color-scheme:dark){
+    body{background:#1a1a18;color:#d3d1c7;}
+    .callout{background:#2c2c2a;color:#b4b2a9;}
+    .subtitle,.source{color:#b4b2a9;}
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="hdr">
+    <p class="tag">Zawia3 &middot; Chart 4 of 7</p>
+    <p class="title">Domestic Production vs. Imports in Egypt's Petroleum Products</p>
+    <p class="subtitle">Egypt imports two-fifths of its fuel needs</p>
+  </div>
+  <div class="callout">"Egypt imports 40% of its petroleum needs — any disruption in supply lines directly hits two-fifths of the country's fuel"</div>
+  
+<div style="display:flex;align-items:center;gap:clamp(12px,4vw,20px);flex-wrap:wrap">
+  <div style="position:relative;width:clamp(150px,40vw,170px);height:clamp(150px,40vw,170px);flex-shrink:0"><canvas id="c"></canvas></div>
+  <div style="flex:1;min-width:min(140px,100%);display:flex;flex-direction:column;gap:12px">
+    <div style="background:#eef4fb;border-radius:8px;padding:clamp(10px,3vw,14px)">
+      <p style="font-size:clamp(10px,2.5vw,11px);color:#5f5e5a;margin-bottom:3px">Domestic production</p>
+      <p style="font-size:clamp(26px,7vw,34px);font-weight:800;color:#378ADD;line-height:1">60%</p>
+      <p style="font-size:clamp(9px,2vw,10px);color:#888780;margin-top:2px">of total petroleum needs</p>
+    </div>
+    <div style="background:#faece7;border-radius:8px;padding:clamp(10px,3vw,14px)">
+      <p style="font-size:clamp(10px,2.5vw,11px);color:#993C1D;margin-bottom:3px">Imported from abroad</p>
+      <p style="font-size:clamp(26px,7vw,34px);font-weight:800;color:#D85A30;line-height:1">40%</p>
+      <p style="font-size:clamp(9px,2vw,10px);color:#888780;margin-top:2px">of total petroleum needs</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var dk=matchMedia("(prefers-color-scheme:dark)").matches;
+  var blue=dk?"#85B7EB":"#378ADD",coral=dk?"#F0997B":"#D85A30";
+  new Chart(document.getElementById("c"),{type:"doughnut",
+    data:{labels:["Domestic (60%)","Imports (40%)"],datasets:[{data:[60,40],backgroundColor:[blue,coral],borderWidth:3,borderColor:dk?"#1a1a18":"#fff",hoverOffset:6}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:"62%",animation:{animateRotate:true,animateScale:true,duration:1000,easing:"easeOutQuart"},
+    plugins:{legend:{display:false},tooltip:{backgroundColor:dk?"#2c2c2a":"#fff",borderColor:dk?"rgba(255,255,255,.1)":"rgba(0,0,0,.08)",borderWidth:1,titleColor:dk?"#d3d1c7":"#2c2c2a",bodyColor:dk?"#b4b2a9":"#5f5e5a",padding:10,callbacks:{label:function(c){return " "+c.label+": "+c.raw+"%";}}}}}
+  });
+})();
+</script>
+  <p class="source">Source: Former oil minister Osama Kamal, April 2026</p>
+</div>
+<script>
+(function(){
+  function notify(){var h=document.getElementById("root").offsetHeight;window.parent.postMessage({type:"chartResize",height:h},"*");}
+  setTimeout(notify,1400);window.addEventListener("resize",notify);
+  try{new ResizeObserver(function(){setTimeout(notify,80);}).observe(document.body);}catch(e){}
+})();
+</script>
+</body></html>

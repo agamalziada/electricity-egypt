@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Petroleum Agreements That Followed the First Debt Settlement (2015-2017)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root{--blue:#378ADD;--coral:#D85A30;--teal:#1D9E75;--amber:#BA7517;--gray:#888780;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fff;color:#2c2c2a;}
+  #root{padding:clamp(12px,3vw,20px);}
+  .hdr{border-left:3px solid #1D9E75;padding-left:10px;margin-bottom:10px;}
+  .tag{font-size:clamp(9px,2vw,10px);font-weight:700;letter-spacing:.07em;color:var(--gray);margin-bottom:2px;text-transform:uppercase;}
+  .title{font-size:clamp(13px,3.5vw,15px);font-weight:600;line-height:1.35;margin-bottom:2px;}
+  .subtitle{font-size:clamp(11px,2.5vw,12px);color:#5f5e5a;}
+  .callout{background:#f1efe8;border-left:3px solid #1D9E75;padding:8px 11px;font-size:clamp(11px,2.5vw,12px);color:#5f5e5a;line-height:1.55;margin:9px 0;font-style:italic;}
+  .source{font-size:clamp(9px,2vw,10px);color:var(--gray);margin-top:10px;line-height:1.4;}
+  .cards{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+  .card{flex:1;min-width:min(100px,44%);border-radius:8px;padding:clamp(9px,2.5vw,12px) clamp(10px,3vw,13px);}
+  @media(prefers-color-scheme:dark){
+    body{background:#1a1a18;color:#d3d1c7;}
+    .callout{background:#2c2c2a;color:#b4b2a9;}
+    .subtitle,.source{color:#b4b2a9;}
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="hdr">
+    <p class="tag">Zawia3 &middot; Chart 7 of 7</p>
+    <p class="title">Petroleum Agreements That Followed the First Debt Settlement (2015-2017)</p>
+    <p class="subtitle">83 agreements in two years after a three-year total freeze</p>
+  </div>
+  <div class="callout">"Three years of zero agreements turned into 83 within two years of beginning debt repayment"</div>
+  
+<div style="text-align:center;background:#edf7f3;border-radius:10px;padding:clamp(14px,4vw,20px);margin-bottom:14px">
+  <p style="font-size:clamp(10px,2.5vw,11px);color:#5f5e5a;margin-bottom:4px">Total petroleum agreements signed after repayment</p>
+  <div id="v" style="font-size:clamp(60px,16vw,80px);font-weight:800;color:#1D9E75;line-height:1">0</div>
+  <p style="font-size:clamp(14px,4vw,17px);font-weight:700;color:#1D9E75;margin-top:3px">agreements</p>
+</div>
+<div style="position:relative;width:100%;height:clamp(155px,40vw,180px)"><canvas id="c"></canvas></div>
+<div style="margin-top:10px;background:#faece7;border-left:3px solid #D85A30;padding:9px 12px;border-radius:0 6px 6px 0">
+  <p style="font-size:clamp(11px,2.8vw,12px);color:#993C1D">Before: <strong>2011-2013 — zero agreements</strong> due to unpaid arrears and political instability</p>
+</div>
+<script>
+(function(){
+  var dk=matchMedia("(prefers-color-scheme:dark)").matches;
+  var tc=dk?"#b4b2a9":"#5f5e5a",gc=dk?"rgba(255,255,255,.08)":"rgba(0,0,0,.07)";
+  var teal=dk?"#5DCAA5":"#1D9E75",blue=dk?"#85B7EB":"#378ADD",coral=dk?"#F0997B":"#D85A30";
+  var labels=[["2011-2013","(zero)"],["New","agreements"],["Amendments","to existing"],["Total","2015-2017"]];
+  new Chart(document.getElementById("c"),{type:"bar",
+    data:{labels:labels,datasets:[{data:[0,62,21,83],backgroundColor:[coral,teal,blue,teal],borderWidth:0,borderRadius:5}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:1000,easing:"easeOutQuart",delay:function(c){return c.dataIndex*100;}},
+    plugins:{legend:{display:false},tooltip:{backgroundColor:dk?"#2c2c2a":"#fff",borderColor:dk?"rgba(255,255,255,.1)":"rgba(0,0,0,.08)",borderWidth:1,titleColor:dk?"#d3d1c7":"#2c2c2a",bodyColor:tc,padding:10,callbacks:{label:function(c){return c.raw===0?"Zero agreements":c.raw+" agreements";}}}},
+    scales:{x:{ticks:{color:tc,font:{size:9}},grid:{display:false},border:{color:gc}},
+    y:{ticks:{color:tc,font:{size:10}},grid:{color:gc},border:{display:false}}}}
+  });
+  var s=null;
+  function cu(ts){if(!s)s=ts;var p=Math.min((ts-s)/700,1),e=1-Math.pow(1-p,3);
+    document.getElementById("v").textContent=Math.round(e*83);
+    if(p<1)requestAnimationFrame(cu);else document.getElementById("v").textContent="83";}
+  setTimeout(function(){requestAnimationFrame(cu);},100);
+})();
+</script>
+  <p class="source">Source: Former oil minister Tarek El-Molla statements</p>
+</div>
+<script>
+(function(){
+  function notify(){var h=document.getElementById("root").offsetHeight;window.parent.postMessage({type:"chartResize",height:h},"*");}
+  setTimeout(notify,1400);window.addEventListener("resize",notify);
+  try{new ResizeObserver(function(){setTimeout(notify,80);}).observe(document.body);}catch(e){}
+})();
+</script>
+</body></html>
